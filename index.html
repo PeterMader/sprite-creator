@@ -5,16 +5,130 @@
     <title>Sprite creator</title>
 
     <script src="app.js" charset="utf-8"></script>
+
+    <style media="screen">
+      body {
+        padding: 0;
+        margin: 0;
+        font-family: monospace;
+      }
+
+      #details {
+        position: absolute;
+        top: 0;
+        width: 50%;
+      }
+
+      .details-item {
+        position: absolute;
+      }
+
+      .controls {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        display: flex;
+        height: 100px;
+        width: 100vw;
+        background: #DDDDDD;
+      }
+
+      #drop-zone {
+        height: 98px;
+        flex: 1;
+        border: 1px dashed #888888;
+        line-height: 98px;
+        text-align: center;
+      }
+
+      a {
+        color: #000000;
+      }
+
+      .control-item {
+        flex: 0 0 200px;
+        line-height: 100px;
+        display: block;
+        text-align: center;
+        position: relative;
+        text-decoration: none;
+      }
+
+      .control-item:hover {
+        text-decoration: underline;
+      }
+
+      .canvas-wrapper {
+        position: absolute;
+        top: 0;
+        width: 100vw;
+        height: calc(100vh - 100px);
+        overflow-y: auto;
+      }
+
+      .icon::before {
+        content: '';
+        position: absolute;
+        width: 24px;
+        height: 24px;
+        background-repeat: no-repeat;
+        left: 12px;
+        top: 38px;
+        background-image: url('res/sprite.png');
+      }
+
+      .icon-sprite::before {
+        background-position: 0 0;
+      }
+
+      .icon-clear::before {
+        background-position: 0 -24px;
+      }
+
+      .icon-drop-file::before {
+        background-position: 0 -48px;
+        left: 20%;
+      }
+
+      .icon-space::before {
+        background-position: 0 -72px;
+      }
+
+      #space {
+        width: 100px;
+      }
+
+      #canvas {
+        position: absolute;
+        top: 0;
+        left: 0;
+        border: 1px solid #DDDDDD;
+      }
+    </style>
   </head>
   <body>
 
-    <canvas id="canvas" width="300" height="300"></canvas>
-
-    <div id="drop-zone" style="height: 100px; border: 1px dashed #888888;">
-      <span>Drag your images here.</span>
+    <div class="canvas-wrapper">
+      <canvas id="canvas" width="300" height="300"></canvas>
+      <div id="details"></div>
     </div>
 
-    <a href="#" target="_blank" id="submit">Create sprite</a>
+    <div class="controls">
+      <div id="drop-zone">
+        <span class="icon icon-drop-file">Drop your images here.</span>
+      </div>
+      <div class="control-item">
+        <span class="icon icon-space"><input type="number" id="space" value="0"></span>
+      </div>
+      <a href="#" target="_blank" id="submit" class="control-item">
+        <span class="icon icon-sprite">Create sprite</span>
+      </a>
+      <a href="#" id="clear" class="control-item">
+        <span class="icon icon-clear">Clear sprite</span>
+      </a>
+
+    </div>
+
 
   </body>
 </html>
